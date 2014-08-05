@@ -76,6 +76,7 @@ parameters:
 
   peer_server_count:
     label: number of nodes in the cluster
+    description: The number of replica set members to build.
     type: number
     default: 3
 
