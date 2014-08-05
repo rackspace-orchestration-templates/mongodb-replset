@@ -1,8 +1,7 @@
 heat_template_version: 2013-05-23
 
 description: |
-  This is a Heat template to deploy a single Linux server running a rails
-  application deployed from a git repo
+  This is a Heat template to deploy a single Linux servers running MongoDB.
 
 parameters:
   server_hostname:
