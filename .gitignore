@@ -1,0 +1,5 @@
+Berksfile.lock
+Gemfile.lock
+
+tmp
+*.pyc
