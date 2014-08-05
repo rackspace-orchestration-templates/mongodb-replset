@@ -76,9 +76,13 @@ parameters:
 
   peer_server_count:
     label: number of nodes in the cluster
-    description: The number of replica set members to build.
+    description: The number of replica set members to build--preferably an odd number.
     type: number
     default: 3
+    contraints:
+      - range:
+          min: 1
+          max: 12
 
   kitchen:
     description: "URL for a git repo containing required cookbooks"
