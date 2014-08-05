@@ -81,7 +81,7 @@ parameters:
     default: 3
 
   kitchen:
-    description: "URL for a git repo containing required cookbooks"
+    description: URL for a git repo containing required cookbooks
     type: string
     default: https://github.com/rackspace-orchestration-templates/mongodb-replset
 
