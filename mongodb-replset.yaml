@@ -1,0 +1,145 @@
+heat_template_version: 2013-05-23
+
+description: |
+  This is a Heat template to deploy a single Linux server running a rails
+  application deployed from a git repo
+
+parameter_groups:
+
+- label: Server Settings
+  parameters:
+  - image
+  - flavor
+  - peer_server_count
+
+- label: rax-dev-params
+  # These are parameters that will not be displayed in the portal. The purpose
+  # of these parameters are for users who are developing or testing newer or
+  # different setups. If any of these parameters are changed, there is a good
+  # chance this stack will fail to properly deploy.
+  parameters:
+  - kitchen
+  - chef_version
+  - child_template
+
+
+parameters:
+  server_hostname:
+    label: Server Hostnames
+    description: Defines how the server will be named.
+    type: string
+    default: 'mongodb'
+
+  image:
+    label: Operating System
+    description: |
+      Server image used for all servers that are created as a part of this
+      deployment
+    type: string
+    default: Ubuntu 12.04 LTS (Precise Pangolin)
+    constraints:
+    - allowed_values:
+      - Ubuntu 12.04 LTS (Precise Pangolin)
+      description: Must be a supported operating system.
+
+  flavor:
+    label: Server Size
+    description: |
+      Rackspace Cloud Server flavor to use. The size is based on the amount of
+      RAM for the provisioned server.
+    type: string
+    default: 4 GB Performance
+    constraints:
+    - allowed_values:
+      - 1 GB Performance
+      - 2 GB Performance
+      - 4 GB Performance
+      - 8 GB Performance
+      - 15 GB Performance
+      - 30 GB Performance
+      - 1GB Standard Instance
+      - 2GB Standard Instance
+      - 4GB Standard Instance
+      - 8GB Standard Instance
+      - 15GB Standard Instance
+      - 30GB Standard Instance
+      description: |
+        Must be a valid Rackspace Cloud Server flavor for the region you have
+        selected to deploy into.
+
+  child_template:
+    label: Child Template
+    description: |
+      Location of the child template to use for the Rails application servers
+    type: string
+    default: https://raw.githubusercontent.com/JasonBoyles/heat-mongodb-replicaset/master/mongodb-replset-peers.yaml
+
+  peer_server_count:
+    label: number of nodes in the cluster
+    type: number
+    default: 3
+
+  kitchen:
+    description: "URL for a git repo containing required cookbooks"
+    type: string
+    default: https://github.com/JasonBoyles/heat-mongodb26-replicaset
+
+  chef_version:
+    description: Version of chef client to use
+    type: string
+    default: 11.12.8
+
+resources:
+
+  ssh_key:
+    type: "OS::Nova::KeyPair"
+    properties:
+      name: { get_param: "OS::stack_id" }
+      save_private_key: true
+
+  mongodb_peer_servers:
+    type: "OS::Heat::ResourceGroup"
+    properties:
+      count: { get_param: peer_server_count }
+      resource_def:
+        type: { get_param: child_template }
+        properties:
+          server_hostname:
+            str_replace:
+              template: '%name%-0%index%'
+              params:
+                '%name%': { get_param: server_hostname }
+          image: { get_param: image }
+          flavor: { get_param: flavor }
+          ssh_key: { get_resource: ssh_key }
+          ssh_private_key: { get_attr: [ssh_key, private_key] }
+          kitchen: { get_param: kitchen }
+          chef_version: { get_param: chef_version }
+
+  server_setup:
+    type: "OS::Heat::ChefSolo"
+    depends_on:
+    - mongodb_peer_servers
+    properties:
+      username: root
+      private_key: { get_attr: [ssh_key, private_key] }
+      host: { get_attr: [mongodb_peer_servers, accessIPv4, 0] }
+      kitchen: { get_param: kitchen }
+      chef_version: { get_param: chef_version }
+      node:
+        mongodb:
+          bind_ip: { get_attr: [mongodb_peer_servers, privateIPv4, 0] }
+          use_fqdn: false
+          replicaset_members: { get_attr: [mongodb_peer_servers, privateIPv4] }
+          config:
+            replset: myreplset
+        run_list: [ "recipe[config_replset]" ]
+
+outputs:
+  private_key:
+    value: { get_attr: [ssh_key, private_key] }
+    description: "SSH Private Key"
+
+  server_public_ips:
+    value: { get_attr: [mongodb_peer_servers, accessIPv4] }
+    description: "Server IPs"

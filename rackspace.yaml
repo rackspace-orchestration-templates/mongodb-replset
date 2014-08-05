@@ -1,0 +1,39 @@
+schema-version: 1.0.0
+application-family: Database
+application-name: MongoDB
+application-version: 2.4
+flavor: Multiple Linux Servers
+flavor-weight: 1
+reach-info:
+  tattoo: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/mongodb-tattoo.png
+  icon-20x20: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/mongodb-icon-20x20.png
+  rackspace-supported: true
+abstract: |
+  Multiple Linux servers running [MongoDB](http://www.mongodb.org/)
+  version 2.6 configured as a replica set.
+instructions: |
+  #### Getting Started
+  If you're new to MongoDB, check out the [Getting Started with
+  MongoDB](http://docs.mongodb.org/manual/tutorial/getting-started/) guide.
+  This document covers the basics of connecting to and using your new
+  replica set.
+
+  #### Serious About MongoDB?
+  Built from the ground up, ObjectRocket is the premium MongoDB database-as-a-service (DBaaS).
+  The only solution that is by default highly available, automatically sharded and unbelievably fast.
+  Start your free trial at [ObjectRocket.com](http://objectrocket.com).
+
+  #### Details of Your Setup
+  This deployment was stood up using
+  [chef-solo](http://docs.opscode.com/chef_solo.html). Once the deployment
+  is up, chef will not run again, so it is safe to modify configurations.
+
+  MongoDB has been installed via package. The configuration file for Mongo
+  is /etc/mongod.conf. All data is stored in /var/lib/mongodb.
+
+  #### Logging in via SSH
+  The private key provided in the passwords section can be used to login as
+  root via SSH. We have an article on how to use these keys with [Mac OS X
+  and Linux](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-linuxmac)
+  as well as [Windows using
+  PuTTY](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-windows).
