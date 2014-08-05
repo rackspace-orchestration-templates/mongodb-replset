@@ -1,19 +1,17 @@
 Description
 ===========
 
-This is a template for deploying a [WordPress](http://wordpress.org/) across
-multiple servers. By default, this template will create a Cloud Load Balancer,
-a database server, an admin/master node, and a web node. Content will be kept
-in sync across the admin/master node and the remaining nodes leveraging lsyncd.
-This template is leveraging [chef-solo](http://docs.opscode.com/chef_solo.html)
-to setup the server.
+This is a template to deploy [MongoDB](http://www.mongodb.org) to multiple
+servers configured as a replica set.
+
+This template uses [chef-solo](http://docs.opscode.com/chef_solo.html)
+to configure the server.
 
 Requirements
 ============
 * A Heat provider that supports the following:
   * OS::Heat::ChefSolo
   * OS::Heat::RandomString
-  * Rackspace::Cloud::LoadBalancer
   * OS::Heat::ResourceGroup
   * Rackspace::Cloud::Server
   * OS::Nova::KeyPair
