@@ -65,9 +65,11 @@ parameters:
     default: 11.12.8
 
   ssh_key:
+    description: the ssh name
     type: string
 
   ssh_private_key:
+    description: the ssh private key to use for ssh login
     type: string
 
 
@@ -117,9 +119,6 @@ resources:
                     "recipe[mongodb::replicaset]" ]
 
 outputs:
-  private_key:
-    value: { get_attr: [ssh_key, private_key] }
-    description: "SSH Private Key"
 
   server_public_ip:
     value: { get_attr: [mongodb_peer_server, accessIPv4] }
