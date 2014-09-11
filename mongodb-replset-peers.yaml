@@ -115,6 +115,7 @@ resources:
             bind_ip: 0.0.0.0     # { get_attr: [mongodb_peer_server, privateIPv4] }
         run_list: [ "recipe[apt]",
                     "recipe[build-essential]",
+                    "recipe[install_packages]",
                     "recipe[mongodb::10gen_repo]",
                     "recipe[mongodb::replicaset]" ]
 
