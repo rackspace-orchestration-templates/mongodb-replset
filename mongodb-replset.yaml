@@ -85,11 +85,13 @@ parameters:
           max: 12
 
   kitchen:
+    label: Kitchen URL
     description: URL for a git repo containing required cookbooks
     type: string
     default: https://github.com/rackspace-orchestration-templates/mongodb-replset
 
   chef_version:
+    label: Chef Version
     description: Version of chef client to use
     type: string
     default: 11.12.8
