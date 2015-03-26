@@ -1,4 +1,6 @@
-chef_gem 'mongo'
+chef_gem 'mongo' do
+  version '1.12.0'
+end
 
 ruby_block 'config replset' do
   block do
