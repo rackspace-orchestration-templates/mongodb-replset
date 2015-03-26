@@ -76,7 +76,7 @@ parameters:
 resources:
 
   mongodb_peer_server:
-    type: "Rackspace::Cloud::Server"
+    type: "OS::Nova::Server"
     properties:
       name: { get_param: server_hostname }
       flavor: { get_param: flavor }
@@ -99,6 +99,9 @@ resources:
         apt:
           compile_time_update: true
         mongodb:
+          ruby_gems:
+            mongo: '1.12.0'
+            bson_ext: '1.12.0'
           default_init_name: mongod
           instance_name: mongod
           dbconfig_file: /etc/mongod.conf
@@ -112,7 +115,7 @@ resources:
             replicaset: false
           config:
             replSet: myreplset
-            bind_ip: 0.0.0.0     # { get_attr: [mongodb_peer_server, privateIPv4] }
+            bind_ip: 0.0.0.0
         run_list: [ "recipe[apt]",
                     "recipe[build-essential]",
                     "recipe[install_packages]",
@@ -126,7 +129,7 @@ outputs:
     description: "Server IP"
 
   privateIPv4:
-    value: { get_attr: [mongodb_peer_server, privateIPv4] }
+    value: { get_attr: [mongodb_peer_server, networks, private, 0] }
     description: the private ip of the peer server
 
   accessIPv4:
