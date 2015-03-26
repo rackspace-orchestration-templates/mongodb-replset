@@ -115,7 +115,7 @@ resources:
             replicaset: false
           config:
             replSet: myreplset
-            bind_ip: 0.0.0.0     # { get_attr: [mongodb_peer_server, networks, private, 0] }
+            bind_ip: 0.0.0.0
         run_list: [ "recipe[apt]",
                     "recipe[build-essential]",
                     "recipe[install_packages]",
