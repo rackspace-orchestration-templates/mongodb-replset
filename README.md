@@ -69,7 +69,7 @@ the `-P` flag to specify a custom parameter.
   https://raw.githubusercontent.com/rackspace-orchestration-templates/mongodb-replset/master/mongodb-replset-peer.yaml)
 * `load_balancer_hostname`: Hostname for the Cloud Load Balancer (Default:
   WordPress-Load-Balancer)
-* `chef_version`: Version of chef client to use (Default: 11.12.8)
+* `chef_version`: Version of chef client to use (Default: 12.3.0)
 
 Outputs
 =======
