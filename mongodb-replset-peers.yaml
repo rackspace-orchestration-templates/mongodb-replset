@@ -123,7 +123,8 @@ resources:
                     "recipe[build-essential]",
                     "recipe[install_packages]",
                     "recipe[mongodb::10gen_repo]",
-                    "recipe[mongodb::replicaset]" ]
+                    "recipe[mongodb::replicaset]",
+                    "recipe[rax-firewall]" ]
 
 outputs:
 
