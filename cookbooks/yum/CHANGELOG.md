@@ -2,7 +2,51 @@ yum Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the yum cookbook.
 
-v3.3.0 (2014-09-04)
+v3.6.1 (2015-06-04)
+-------------------
+- Executing yum clean before makecache
+- Adding repo_gpgcheck
+
+v3.6.0 (2015-04-23)
+-------------------
+- Adding "yum clean" before "yum makecache" in yum_repository :create
+- Adding why_run support to yum_globalconfig
+
+v3.5.4 (2015-04-07)
+-------------------
+- Changing tolerant config line to stringified integer
+
+v3.5.3 (2015-01-16)
+-------------------
+- Adding reposdir to globalconfig template
+
+v3.5.2 (2014-12-24)
+-------------------
+- Fixing redhat-release detection for Redhat 7
+
+v3.5.1 (2014-11-24)
+-------------------
+- Reverting management of ca-certificates because EL5 was broken
+
+v3.5.0 (2014-11-24)
+-------------------
+- Adding management of ca-certificates package to yum_repository provider
+
+v3.4.1 (2014-10-29)
+-------------------
+- Run yum-makecache only_if new_resource.enabled
+- Allow setting of reposdir in global yum config and man page
+- Change default 'obsoletes' behavior to match yum defaults
+
+v3.4.0 (2014-10-15)
+-------------------
+- Dynamically generate the new_resource attributes
+
+v3.3.2 (2014-09-11)
+-------------------
+- Fix globalconfig resource param for http_caching
+
+v3.3.1 (2014-09-04)
 -------------------
 - Fix issue with sslverify if set to false
 - Add fancy badges
@@ -78,7 +122,7 @@ Updating default.rb to consume node['yum']['main']['proxy']
 v3.0.4 (2013-12-29)
 -------------------
 ### Bug
-- **[COOK-4156](https://tickets.opscode.com/browse/COOK-4156)** - yum cookbook creates a yum.conf with "cachefir" directive
+- **[COOK-4156](https://tickets.chef.io/browse/COOK-4156)** - yum cookbook creates a yum.conf with "cachefir" directive
 
 
 v3.0.2
@@ -119,14 +163,14 @@ v2.4.0
 v2.3.4
 ------
 ### Improvement
-- **[COOK-3689](https://tickets.opscode.com/browse/COOK-3689)** - Fix warnings about resource cloning
-- **[COOK-3574](https://tickets.opscode.com/browse/COOK-3574)** - Add missing "description" field in metadata
+- **[COOK-3689](https://tickets.chef.io/browse/COOK-3689)** - Fix warnings about resource cloning
+- **[COOK-3574](https://tickets.chef.io/browse/COOK-3574)** - Add missing "description" field in metadata
 
 
 v2.3.2
 ------
 ### Bug
-- **[COOK-3145](https://tickets.opscode.com/browse/COOK-3145)** - Use correct download URL for epel `key_url`
+- **[COOK-3145](https://tickets.chef.io/browse/COOK-3145)** - Use correct download URL for epel `key_url`
 
 v2.3.0
 ------

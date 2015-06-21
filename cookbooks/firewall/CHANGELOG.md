@@ -2,6 +2,42 @@ firewall Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the firewall cookbook.
 
+v1.3.0 (2015-06-09)
+-------------------
+* #63 - Add support for protocol numbers
+
+v1.2.0 (2015-05-28)
+-------------------
+* #64 - Support the newer version of poise
+
+v1.1.2 (2015-05-19)
+-------------------
+* #60 - Always add /32 or /128 to ipv4 or ipv6 addresses, respectively.
+      - Make comment quoting optional; iptables on Ubuntu strips quotes on strings without any spaces
+
+v1.1.1 (2015-05-11)
+-------------------
+* #57 - Suppress warning: already initialized constant XXX while Chefspec 
+
+v1.1.0 (2015-04-27)
+-------------------
+* #56 - Better ipv6 support for firewalld and iptables
+* #54 - Document raw parameter
+
+v1.0.2 (2015-04-03)
+-------------------
+* #52 - Typo in :masquerade action name
+
+v1.0.1 (2015-03-28)
+-------------------
+* #49 - Fix position attribute of firewall_rule providers to be correctly used as a string in commands
+
+v1.0.0 (2015-03-25)
+-------------------
+* Major upgrade and rewrite as HWRP using poise
+* Adds support for iptables and firewalld
+* Modernize tests and other files
+* Fix many bugs from ufw defaults to multiport suppot
 
 v0.11.8 (2014-05-20)
 --------------------
