@@ -143,6 +143,9 @@ resources:
           replicaset_members: { get_attr: [mongodb_peer_servers, privateIPv4] }
           config:
             replset: myreplset
+        rax:
+          firewall:
+            tcp: [22,27017]
         run_list: [ "recipe[config_replset]" ]
 
 outputs:

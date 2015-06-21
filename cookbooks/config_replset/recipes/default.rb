@@ -1,5 +1,5 @@
 chef_gem 'mongo' do
-  version '1.12.0'
+  version '2.0.5'
 end
 
 ruby_block 'config replset' do
