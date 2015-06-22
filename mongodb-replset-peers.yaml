@@ -16,10 +16,10 @@ parameters:
       Server image used for all servers that are created as a part of this
       deployment
     type: string
-    default: Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
+    default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)
     constraints:
     - allowed_values:
-      - Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
+      - Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)
       description: Must be a supported operating system.
 
   flavor:
@@ -62,7 +62,7 @@ parameters:
   chef_version:
     description: Version of chef client to use
     type: string
-    default: 11.12.8
+    default: 12.3.0
 
   ssh_key:
     description: the ssh name
@@ -100,8 +100,8 @@ resources:
           compile_time_update: true
         mongodb:
           ruby_gems:
-            mongo: '1.12.0'
-            bson_ext: '1.12.0'
+            mongo: '2.0.5'
+            bson_ext: '1.12.3'
           default_init_name: mongod
           instance_name: mongod
           dbconfig_file: /etc/mongod.conf
@@ -116,11 +116,15 @@ resources:
           config:
             replSet: myreplset
             bind_ip: 0.0.0.0
+        rax:
+          firewall:
+            tcp: [22,27017]
         run_list: [ "recipe[apt]",
                     "recipe[build-essential]",
                     "recipe[install_packages]",
                     "recipe[mongodb::10gen_repo]",
-                    "recipe[mongodb::replicaset]" ]
+                    "recipe[mongodb::replicaset]",
+                    "recipe[rax-firewall]" ]
 
 outputs:
 

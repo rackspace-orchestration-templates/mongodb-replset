@@ -2,6 +2,48 @@ runit Cookbook CHANGELOG
 ========================
 This file is used to list changes made in each version of the runit cookbook.
 
+v1.7.2 (2015-06-19)
+----------
+* Re-add missing runit_service actions start, stop, reload and status
+
+v1.7.0 (2015-06-18)
+----------
+* Modernize runit_service provider by rewriting pure Ruby as LWRP (#107)
+* Modernize integration tests by rewriting Minitest suites as ServerSpec (#107)
+* Fix regression in support for alternate sv binary on debian platforms (#92, #123)
+* Fix regression in default logger's config location (#117)
+* Tighten permissions on environment variable config files from 0644 to 0640 (#125)
+* Add `start_down` and `delete_downfile` attributes to support configuring services with default state of 'down' (#105)
+
+v1.6.0 (2015-04-06)
+--------------------
+* Fedora 21 support
+* Kitchen platform updates
+* use imeyer’s packagecloud repo for RHEL
+* fix converge_by usage
+* do_action helper to set updated_by_last_action
+* style fixes to provider
+
+v1.5.18 (2015-03-13)
+--------------------
+* Add helper methods to detect installation presence
+
+v1.5.16 (2015-02-11)
+--------------------
+* Allow removal of env files(nhuff)
+
+v1.5.14 (2015-01-15)
+--------------------
+* Provide create action(clako)
+
+v1.5.12 (2014-12-15)
+--------------------
+* prevent infinite loop inside docker container
+* runit service failing inside docker container
+* move to librarian-chef for kitchen dependency resolution
+* update tests
+* updates to chefspec matchers
+
 v1.5.10 (2014-03-07)
 --------------------
 PR #53- Fix runit RPM file location for Chef provisionless Centos 5.9 Box Image
@@ -24,7 +66,7 @@ Fixing assignment/compare error
 v1.5.1
 ------
 ### Bug
-- **[COOK-3950](https://tickets.opscode.com/browse/COOK-3950)** - runit cookbook should use full service path when checking running status
+- **[COOK-3950](https://tickets.chef.io/browse/COOK-3950)** - runit cookbook should use full service path when checking running status
 
 
 v1.5.0
@@ -52,22 +94,22 @@ v1.4.0
 v1.3.0
 ------
 ### Improvement
-- **[COOK-3663](https://tickets.opscode.com/browse/COOK-3663)** - Add ./check scripts support
+- **[COOK-3663](https://tickets.chef.io/browse/COOK-3663)** - Add ./check scripts support
 
 ### Bug
-- **[COOK-3271](https://tickets.opscode.com/browse/COOK-3271)** - Fix an issue where runit fails to install rpm package on rehl systems
+- **[COOK-3271](https://tickets.chef.io/browse/COOK-3271)** - Fix an issue where runit fails to install rpm package on rehl systems
 
 v1.2.0
 ------
 ### New Feature
-- **[COOK-3243](https://tickets.opscode.com/browse/COOK-3243)** - Expose LSB init directory as a configurable
+- **[COOK-3243](https://tickets.chef.io/browse/COOK-3243)** - Expose LSB init directory as a configurable
 
 ### Bug
-- **[COOK-3182](https://tickets.opscode.com/browse/COOK-3182)** - Do not hardcode rpmbuild location
+- **[COOK-3182](https://tickets.chef.io/browse/COOK-3182)** - Do not hardcode rpmbuild location
 
 ### Improvement
-- **[COOK-3175](https://tickets.opscode.com/browse/COOK-3175)** - Add svlogd config file support
-- **[COOK-3115](https://tickets.opscode.com/browse/COOK-3115)** - Add ability to install 'runit' package from Yum
+- **[COOK-3175](https://tickets.chef.io/browse/COOK-3175)** - Add svlogd config file support
+- **[COOK-3115](https://tickets.chef.io/browse/COOK-3115)** - Add ability to install 'runit' package from Yum
 
 v1.1.6
 ------

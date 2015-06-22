@@ -23,11 +23,10 @@ test-cases:
             use_ssh_config: True
             fabfile: test/fabric/mongo.py # Path to envassert test
 
-- name: Standard Instance, Ubuntu 12.04
+- name: Standard Instance
   create:
     parameters:
       flavor: 2GB Standard Instance
-      image: Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
     timeout: 45
   resource_tests:
     ssh_private_key: { get_output: private_key }

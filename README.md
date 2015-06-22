@@ -63,13 +63,13 @@ the `-P` flag to specify a custom parameter.
 * `wp_web_server_flavor`: Cloud Server size to use on all of the additional web
   nodes. (Default: 2 GB Performance)
 * `image`: Required: Server image used for all servers that are created as a
-  part of this deployment. (Default: Ubuntu 12.04 LTS (Precise Pangolin))
+  part of this deployment. (Default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM))
 * `child_template`: Location of the child template to use for the WordPress web
   servers (Default:
   https://raw.githubusercontent.com/rackspace-orchestration-templates/mongodb-replset/master/mongodb-replset-peer.yaml)
 * `load_balancer_hostname`: Hostname for the Cloud Load Balancer (Default:
   WordPress-Load-Balancer)
-* `chef_version`: Version of chef client to use (Default: 11.12.8)
+* `chef_version`: Version of chef client to use (Default: 12.3.0)
 
 Outputs
 =======
