@@ -10,8 +10,7 @@ reach-info:
 hidden_outputs:
   - private_key
 abstract: |
-  Multiple Linux servers running [MongoDB](http://www.mongodb.org/)
-  version 2.6 configured as a replica set.
+  MongoDB is a cross-platform document-orientated database system.
 instructions: |
   #### Getting Started
   If you're new to MongoDB, check out the [Getting Started with
