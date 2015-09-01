@@ -1,5 +1,5 @@
 schema-version: 1.0.0
-application-family: Database
+application-family: Databases
 application-name: MongoDB
 application-version: 2.6.x
 flavor: Multiple Linux Servers
